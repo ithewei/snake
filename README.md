@@ -7,4 +7,4 @@ Snake Game
 - food: array
 - UI: curses
 
-[snake](snake.png)
+![snake](snake.png)
