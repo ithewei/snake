@@ -1,7 +1,11 @@
 # cache
 *~
 *.bk
+*.swap
+*.old
+*.new
 
 # output
 *.o
 bin
+
