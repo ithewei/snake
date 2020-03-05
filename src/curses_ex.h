@@ -8,7 +8,7 @@ typedef enum {
     ALIGN_HCENTER = 0x02,
     ALIGN_RIGHT = 0x04,
     ALIGN_XFIXED = 0x08,
-    
+
     ALIGN_TOP = 0x10,
     ALIGN_VCENTER = 0x20,
     ALIGN_BOTTOM = 0x40,
@@ -21,7 +21,7 @@ typedef enum {
 // use screen coordinates
 inline int mvaddstr_ex(int y, int x, const char* str, alignment_e align, int y_off, int x_off) {
     int yy, xx;
-    
+
     if (align & ALIGN_LEFT) xx = x_off;
     if (align & ALIGN_HCENTER) xx = (x-strlen(str))/2 + x_off;
     if (align & ALIGN_RIGHT) xx = x - strlen(str) + x_off;

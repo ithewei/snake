@@ -6,6 +6,7 @@ void deinit_view();
 
 void splash();
 void mainscene();
+void pausescene();
 void gameover();
 
 #endif  // SNAKE_VIEW_H_

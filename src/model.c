@@ -34,7 +34,7 @@ snake_t* alloc_snake(int len) {
 
 void free_snake(snake_t* snake) {
     if (snake == NULL) return;
-    
+
     snake_node_t* cur = snake->head;
     while (cur) {
         snake_node_t* tmp = cur;
@@ -54,7 +54,7 @@ bool is_snake(int x, int y) {
             cur = cur->next;
         }
     }
-    
+
     return false;
 }
 
@@ -82,7 +82,7 @@ foods_t* alloc_foods(int num) {
 
 void free_foods(foods_t* foods) {
     if (foods == NULL) return;
-    
+
     if (foods->foods) {
         free(foods->foods);
         foods->foods = NULL;
@@ -101,13 +101,13 @@ bool eat_food(int x, int y) {
             return true;
         }
     }
-    
+
     return false;
 }
 
 void init_model() {
     deinit_model();
-    
+
     g_snake = alloc_snake(INIT_SNAKE_LEN);
     g_foods = alloc_foods(FOOD_NUM);
 }

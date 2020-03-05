@@ -42,7 +42,9 @@ Game UI
 #define KEY_CTL_UP        KEY_UP
 #define KEY_CTL_RIGHT     KEY_RIGHT
 #define KEY_CTL_DOWN      KEY_DOWN
+
 #define KEY_CTL_QUIT      'q'
+#define KEY_CTL_PAUSE     'p'
 #define KEY_CTL_SLOW      's'
 #define KEY_CTL_FAST      'f'
 

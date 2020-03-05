@@ -36,7 +36,7 @@ void init_view() {
     init_pair(CP_M_BLK, COLOR_MAGENTA, COLOR_BLACK);
     init_pair(CP_C_BLK, COLOR_CYAN, COLOR_BLACK);
     init_pair(CP_W_BLK, COLOR_WHITE, COLOR_BLACK);
-    
+
     attron(A_BOLD);
 
     clear();
@@ -64,7 +64,7 @@ void draw_outline() {
 // [1, BBS_HEIGHT]
 void draw_bbs() {
     attron(COLOR_PAIR(CP_B_BLK));
-    
+
     int speed = 0, score = 0;
     time_t elapse = 0;
     if (g_snake) {
@@ -87,7 +87,7 @@ void draw_bbs() {
 
 void draw_snake(snake_t* snake) {
     attron(COLOR_PAIR(CP_C_BLK));
-    
+
     snake_node_t* cur = snake->head;
     while (cur) {
         mvaddch(cur->y + BBS_HEIGHT, cur->x, SNAKE_CHAR);
@@ -111,15 +111,16 @@ void splash() {
 
     attron(COLOR_PAIR(CP_G_BLK));
     mvaddstr_ex(WALL_HEIGHT, WALL_WIDTH, "Snake 1.0", ALIGN_TOP | ALIGN_HCENTER, 5, 0);
-    mvaddstr_ex(WALL_HEIGHT, WALL_WIDTH, "Author: HeWei", ALIGN_TOP | ALIGN_HCENTER, 7, 0);
-    
-    mvaddstr_ex(WALL_HEIGHT, WALL_WIDTH/4, "Usage:",    ALIGN_VCENTER | ALIGN_XFIXED, 0, 0);
-    mvaddstr_ex(WALL_HEIGHT, WALL_WIDTH/4, "q => quit", ALIGN_VCENTER | ALIGN_XFIXED, 1, 0);
-    mvaddstr_ex(WALL_HEIGHT, WALL_WIDTH/4, "f => fast", ALIGN_VCENTER | ALIGN_XFIXED, 2, 0);
-    mvaddstr_ex(WALL_HEIGHT, WALL_WIDTH/4, "s => slow", ALIGN_VCENTER | ALIGN_XFIXED, 3, 0);
-    
+    mvaddstr_ex(WALL_HEIGHT, WALL_WIDTH, "Author: ithewei", ALIGN_TOP | ALIGN_HCENTER, 7, 0);
+
+    mvaddstr_ex(WALL_HEIGHT, WALL_WIDTH/4, "Usage:         k   ", ALIGN_VCENTER | ALIGN_XFIXED, 0, 0);
+    mvaddstr_ex(WALL_HEIGHT, WALL_WIDTH/4, "q => quit      |   ", ALIGN_VCENTER | ALIGN_XFIXED, 1, 0);
+    mvaddstr_ex(WALL_HEIGHT, WALL_WIDTH/4, "p => pause  h<--->l", ALIGN_VCENTER | ALIGN_XFIXED, 2, 0);
+    mvaddstr_ex(WALL_HEIGHT, WALL_WIDTH/4, "f => fast      |   ", ALIGN_VCENTER | ALIGN_XFIXED, 3, 0);
+    mvaddstr_ex(WALL_HEIGHT, WALL_WIDTH/4, "s => slow      j   ", ALIGN_VCENTER | ALIGN_XFIXED, 4, 0);
+
     mvaddstr_ex(WALL_HEIGHT, WALL_WIDTH, "Press any key to start or 'q' to quit...", ALIGN_CENTER, 6, 0);
-    
+
     refresh();
 }
 
@@ -134,16 +135,30 @@ void mainscene() {
     refresh();
 }
 
-void gameover() {
+void pausescene() {
     attron(COLOR_PAIR(CP_R_BLK));
     attron(A_STANDOUT);
-    
+
     // no clear
     // clear();
     // draw_outline();
-    
+
+    mvaddstr_ex(WALL_HEIGHT, WALL_WIDTH, "Press 'p' to continue...", ALIGN_CENTER, -3, 0);
+
+    attroff(A_STANDOUT);
+    refresh();
+}
+
+void gameover() {
+    attron(COLOR_PAIR(CP_R_BLK));
+    attron(A_STANDOUT);
+
+    // no clear
+    // clear();
+    // draw_outline();
+
     mvaddstr_ex(WALL_HEIGHT, WALL_WIDTH, "Game Over", ALIGN_CENTER, -3, 0);
-    
+
     char* reason = NULL;
     if (g_snake->state == HIT_SNAKE) {
         reason = "Hit Snake!";
@@ -153,7 +168,7 @@ void gameover() {
     if (reason) {
         mvaddstr_ex(WALL_HEIGHT, WALL_WIDTH, reason, ALIGN_CENTER, 0, 0);
     }
-    
+
     mvaddstr_ex(WALL_HEIGHT, WALL_WIDTH, "Press 'r' to restart or 'q' to quit...", ALIGN_CENTER, 3, 0);
     attroff(A_STANDOUT);
     refresh();
